@@ -1,9 +1,9 @@
 import java.io.*;
 
 public class FileManager {
-    private String basePath = "C:\\Users\\Francesca\\Documents\\Fab\\Java\\file_java\\";
+    private static String basePath = "C:\\Users\\Francesca\\Documents\\Fab\\Java\\file_java\\";
 
-    public void scriviSuFile(String nomeFile, String contenuto) {
+    public static void scriviSuFile(String nomeFile, String contenuto) {
         String filePath = basePath + nomeFile;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(contenuto);
@@ -14,7 +14,7 @@ public class FileManager {
         }
     }
 
-    public void leggiDaFile(String nomeFile) {
+    public static void leggiDaFile(String nomeFile) {
         String filePath = basePath + nomeFile;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -28,7 +28,7 @@ public class FileManager {
 
     }
 
-    public void copiaFile(String sorgente, String destinazione) {
+    public static void copiaFile(String sorgente, String destinazione) {
         try (BufferedReader reader = new BufferedReader(new FileReader(sorgente));
              BufferedWriter writer = new BufferedWriter(new FileWriter(destinazione))) {
             String line;
@@ -42,7 +42,7 @@ public class FileManager {
         }
     }
 
-    public void eliminaFile(String nomeFile) {
+    public static void eliminaFile(String nomeFile) {
         String filePath = basePath + nomeFile;
         File file = new File(filePath);
 
