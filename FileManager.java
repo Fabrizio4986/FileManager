@@ -1,7 +1,14 @@
 import java.io.*;
 
 public class FileManager {
+    @SuppressWarnings("unchecked")
     private static String basePath = "C:\\Users\\Francesca\\Documents\\Fab\\Java\\file_java\\";
+
+    //Metodo obsoleto utilizzare metodo leggiDaFile()
+    @Deprecated
+    public void stampaFile(){
+
+    }
 
     public static void scriviSuFile(String nomeFile, String contenuto) {
         String filePath = basePath + nomeFile;
@@ -15,7 +22,7 @@ public class FileManager {
     }
 
     public static void leggiDaFile(String nomeFile) {
-        String filePath = basePath + nomeFile;
+        String filePath = basePath + nomeFile +".ser";
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -28,6 +35,7 @@ public class FileManager {
 
     }
 
+    @SuppressWarnings("unchecked")
     public static void copiaFile(String sorgente, String destinazione) {
         try (BufferedReader reader = new BufferedReader(new FileReader(sorgente));
              BufferedWriter writer = new BufferedWriter(new FileWriter(destinazione))) {
@@ -43,7 +51,7 @@ public class FileManager {
     }
 
     public static void eliminaFile(String nomeFile) {
-        String filePath = basePath + nomeFile;
+        String filePath = basePath + nomeFile +".ser";
         File file = new File(filePath);
 
         if (!file.exists()) {

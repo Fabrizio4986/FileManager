@@ -5,12 +5,16 @@ public class Documento implements Serializable {
     private String titolo;
     private String autore;
     private String contenuto;
+    private int numPagine;
+    @SuppressWarnings("unchecked")
     private String basePath = "C:\\Users\\Francesca\\Documents\\Fab\\Java\\file_java\\";
 
-    public Documento(String titolo, String autore, String contenuto){
+    public Documento(String titolo, String autore, String contenuto, int numPagine){
         this.titolo = titolo;
         this.autore = autore;
         this.contenuto = contenuto;
+        this.numPagine = numPagine;
+
     }
 
     public String getTitolo() {
@@ -21,32 +25,44 @@ public class Documento implements Serializable {
         return autore;
     }
 
+    @SuppressWarnings("unchecked")
     public String getContenuto() {
         return contenuto;
     }
 
+    @SuppressWarnings("unchecked")
+    public int getNumPagine() {
+        return numPagine;
+    }
+
+    @SuppressWarnings("unchecked")
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
 
+    @SuppressWarnings("unchecked")
     public void setAutore(String autore) {
         this.autore = autore;
     }
 
+    @SuppressWarnings("unchecked")
     public void setContenuto(String contenuto) {
         this.contenuto = contenuto;
     }
 
+    @SuppressWarnings("unchecked")
+    public void setNumPagine(int numPagine) {
+        this.numPagine = numPagine;
+    }
+
     public void stampaInfo() {
-        System.out.println("Titolo: " + titolo + ", Autore: " + autore);
+        System.out.println("Titolo: " + titolo + ", Autore: " + autore + ", n° pagine: " + numPagine);
         System.out.println("Contenuto: " + contenuto);
     }
 
-    public void salvaSuFile(String nomeFile){
-
+    public void salvaSuFile(Documento doc){
+        String nomeFile = doc.getAutore() + doc.getTitolo();
         String filePath = basePath + nomeFile +".ser";
-
-        Documento doc = new Documento("Tesi","Fabrizio", "contenuto tesi");
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(doc);
@@ -56,6 +72,7 @@ public class Documento implements Serializable {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void caricaDaFile(String nomeFile){
 
         String filePath = basePath + nomeFile +".ser";
